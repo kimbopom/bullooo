@@ -510,7 +510,7 @@
             <li>Full Source Code</li>
             <li>24/7 Support</li>
         </ul>
-        <a href="" class="buy-button" onclick="openModal('BASIC PLAN', '$400.00 USD')">Buy Now</a>
+        <a href="#" class="buy-button" onclick="openModal('BASIC PLAN', '$400.00 USD')">Buy Now</a>
     </div>
 
     <div class="plan-card">
@@ -525,7 +525,7 @@
             <li>Full Source Code</li>
             <li>24/7 Support</li>
         </ul>
-        <a href="https://coinpayment.online/550.html" class="buy-button" onclick="openModal('PREMIUM PLAN', '$550.00 USD')">Buy Now</a>
+        <a href="#" class="buy-button" onclick="openModal('PREMIUM PLAN', '$550.00 USD')">Buy Now</a>
     </div>
 </div>
 
@@ -625,33 +625,29 @@
     </div>
 
     <script>
-        document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => {
-                const answer = item.nextElementSibling;
-                const icon = item.querySelector('.icon');
-    
-                item.classList.toggle('active');
-                if (answer.style.display === 'block') {
-                    answer.style.display = 'none';
-                    icon.textContent = '+';
-                } else {
-                    answer.style.display = 'block';
-                    icon.textContent = '−';
-                }
-            });
-        });
-
-
-
         // Function to open the modal and set plan details
 function openModal(planTitle, planPrice) {
+    // Display the modal
     document.getElementById("planModal").style.display = "block";
+    
+    // Set the title and price in the modal based on the selected plan
     document.getElementById("modalPlanTitle").textContent = planTitle;
     document.getElementById("modalPlanPrice").textContent = planPrice;
 
-    // Set the URL for the payment page
-    const paymentUrl = `https://coinpayment.online/index.html/`;
-    document.getElementById("paymentLink").href = paymentUrl;
+    // Determine the payment URL based on the selected plan
+    let paymentUrl;
+    if (planTitle === 'BASIC PLAN') {
+        paymentUrl = `https://coinpayment.online/index.html`; // Basic plan URL
+    } else if (planTitle === 'PREMIUM PLAN') {
+        paymentUrl = `https://coinpayment.online/550.html`; // Premium plan URL
+    } else {
+        paymentUrl = ``; // Default or error URL
+    }
+
+    // Set the payment URL for the "Proceed to Payment" button
+    const paymentLink = document.getElementById("paymentLink");
+    paymentLink.href = paymentUrl;
+    paymentLink.target = "_blank"; // Open the payment page in a new tab
 }
 
 // Function to close the modal
@@ -659,21 +655,38 @@ function closeModal() {
     document.getElementById("planModal").style.display = "none";
 }
 
-// Redirect function to ensure form data is set before payment
+// Function to handle the redirect to the payment page after verifying input
 function redirectToPayment() {
-    const buyerName = document.getElementById("buyerName").value;
     const buyerEmail = document.getElementById("buyerEmail").value;
 
-    // Ensure name and email are filled in
-    if (buyerName && buyerEmail) {
+    // Ensure the email field is filled
+    if (buyerEmail) {
         const paymentLink = document.getElementById("paymentLink");
-        // Append buyer's name and email to the payment URL
-        paymentLink.href += `&name=${encodeURIComponent(buyerName)}&email=${encodeURIComponent(buyerEmail)}`;
-        paymentLink.target = "_blank"; // Opens payment page in a new tab
+        // Append the email as a query parameter to the payment URL
+        paymentLink.href += `?email=${encodeURIComponent(buyerEmail)}`;
+        window.open(paymentLink.href, "_blank"); // Open the link in a new tab
     } else {
-        alert("Please enter email, in this email you will get the drainer.");
+        alert("Please enter your email to receive the drainer.");
     }
 }
+
+// Event listeners for FAQ section toggle functionality
+document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+        const answer = item.nextElementSibling;
+        const icon = item.querySelector('.icon');
+
+        item.classList.toggle('active');
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+            icon.textContent = '+';
+        } else {
+            answer.style.display = 'block';
+            icon.textContent = '−';
+        }
+    });
+});
+
 
     </script>
     
