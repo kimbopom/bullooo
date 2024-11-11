@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BullDrainer - Best Crypto Drainer</title>
+    <link rel="icon" type="image/x-icon" href="bull.ico">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&family=Varela+Round&display=swap');
+
+        /* Reset basic margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* General Body Styling */
+        body {
+            font-family: "Varela Round", sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            background-image: url('red-bg.png'); /* Replace with your image path */
+            background-size: cover; /* Makes the image cover the entire area */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center center; /* Centers the image */
+            padding-top: 50px; /* Adjust according to the height of the top bar */
+        }
+
+        .top-bar {
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 0;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3); /* Add this line */
+}
+
+        .support-info {
+            margin-left: 20px;
+        }
+
+        .support-info a {
+            color: #4b9cfc;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .support-info a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-right: 20px;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container for all content */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* Header Section */
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #a50000;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #cccccc;
+            font-size: 1.1em;
+        }
+
+        /* Section with image and text */
+        .section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* Image Styling */
+        .section img {
+            max-width: 50%;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        /* Text Styling */
+        .section .text {
+            max-width: 50%;
+            text-align: left;
+        }
+
+        .section .text h2 {
+            font-size: 1.5em;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .section .text p {
+            color: #e2e2e2;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* Adjust for mobile view */
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section img, .section .text {
+                max-width: 100%;
+                margin-right: 0;
+            }
+        }
+
+        .image-resize {
+            width: 100px;
+            margin-top: 50px;
+        }
+
+        /* New styles for card layout */
+        .card {
+            background-color: #420000;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        /* Label styling */
+        .label {
+            background-color: #fc4b69;
+            color: #ffffff;
+            font-size: 0.9em;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* Text styling within the card */
+        .card-text {
+            max-width: 60%;
+        }
+
+        .card-text h3 {
+            color: #ffffff;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .card-text p {
+            line-height: 1.6;
+            font-size: 0.95em;
+            color: #c7c7c7;
+        }
+
+        /* Image styling for cards */
+        .card img {
+            max-width: 35%;
+            border-radius: 8px;
+        }
+
+        /* Responsive adjustments for cards */
+        @media (max-width: 768px) {
+            .card {
+                flex-direction: column;
+            }
+
+            .card-text, .card img {
+                max-width: 100%;
+            }
+        }
+
+        /* Pricing plan card styles */
+.plan-card {
+    background-color: #3333335b;
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #a500009d;
+    border-width: 1px;
+    border-style: groove;
+}
+
+.plan-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.cardss {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #a10000;
+}
+
+.cards{
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #ff4d4d;
+}
+
+.plan-card .price {
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.plan-card ul li {
+    margin-bottom: 10px;
+}
+
+.plan-card .buy-button {
+    background-color: #ff000028;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.plans-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* FAQ Section */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.faq-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+
+}
+
+.faq-item {
+    background-color: #00000096;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: medium;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question:hover {
+    background-color: #a7a7a718;
+}
+
+.faq-answer {
+    padding: 15px;
+    display: none;
+    font-size: 0.95em;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* Plus and Minus Icons */
+.faq-question .icon {
+    font-size: 1.2em;
+    color: #888;
+}
+
+.faq-question.active .icon {
+    color: #fc4b69;
+}
+
+.biggers {
+    width: 100%; /* Make it full width by default */
+    max-width: 800px; /* Limit the maximum width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+@media (max-width: 1200px) {
+    .biggers {
+        max-width: 600px; /* Adjust for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .biggers {
+        max-width: 500px; /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .biggers {
+        max-width: 500px; /* Adjust for extra small screens */
+    }
+}
+
+.panel-info {
+    color: rgb(219, 219, 219);
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #000000da;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    margin: 10% auto;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-style: groove;
+    border-color: #a50000;
+    color: white;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    color: #ff0000;
+}
+
+#modalPlanPrice {
+    font-size: 18px;
+    color: #e7e7e7;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #e00000a4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.submit-btn:hover {
+    background-color: #b30000;
+}
+
+
+
+    </style>
+
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <span class="support-info">⏰ Need Support? Telegram: <a href="https://t.me/bull_drainer" target="_blank">@Bull_Drainer</a></span>
+        <span class="social-links">
+            <a href="https://t.me/bull_drainer" target="_blank">@Bull_Drainer</a> |
+            <a href="https://t.me/bull_drainer" target="_blank">Telegram</a>
+        </span>
+    </div>
+
+    <img class="image-resize" src="bulllogo.png">
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>BullDrainer</h1>
+            <p>Best cryptocurrency drainer. Tutorials, support 24/7, full control over your assets.</p>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section">
+            <img src="website1.png" alt="Image description">
+            <div class="text">
+                <h2>Our Wallet Connect can connect 450+ wallets!</h2>
+                <p>Bull Drainer offers Wallet Connect with 450+ wallets to connect for targets.</p>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <img src="website.png" alt="Image description">
+            <div class="text">
+                <h2>Choose from 25 free templates for draining!</h2>
+                <p>Bull Drainer offers all customers 25 free website templates ready for draining. (Tutorial included)</p>
+            </div>
+        </div>
+
+        <!-- New Card Sections as requested -->
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-text">
+                <span class="label">Approve & IncreaseAllowance - TOKENS</span>
+                <h3>Token Approval and Allowance Management</h3>
+                <p>These functions in web3 allow users to grant permissions for spending digital assets on their behalf. However, they can be exploited by malicious users to gain access to and spend assets without authorization, representing a vulnerability in web3 security.</p>
+                <p><strong>Usage by Drainer:</strong> The drainer requests token holder approval through the approve method, enabling them to spend a specified token amount. Further allowance can be requested via increaseAllowance. Once approved, the drainer can drain tokens from the token holder’s account as permitted.</p>
+            </div>
+            <img src="approve.png" alt="Approve & Increase Allowance example">
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-text">
+                <span class="label" style="background-color: #496400;">Permit & Permit2 - TOKENS</span>
+                <h3>Token Permits and Delegations</h3>
+                <p>Using the permit functions, "dredgers" or "delegates" can request token holders to sign messages that allow token drainage. Associated with Ethereum's ERC-20 tokens, these permit functions are crucial for meta transactions, often exploited by dredgers.</p>
+                <p><strong>Usage by Drainer:</strong> To drain tokens, drainer requests the token holder’s signature on a permit message through a software interface, granting them permission to access tokens once approved.</p>
+            </div>
+            <img src="permit2.png" alt="Permit & Permit2 example">
+        </div>
+<br><br>
+<div class="plans-container">
+    <div class="plan-card">
+        <h3 class="cardss">BASIC PLAN</h3>
+        <p class="price">$400.00 USD</p>
+        <ul class="features">
+            <li>All Chains Networks</li>
+            <li>Tutorial on setup</li>
+            <li>25 Templates</li>
+            <li>Slower Updates</li>
+            <li>Full Source Code</li>
+            <li>24/7 Support</li>
+        </ul>
+        <a href="https://coinpayment.online/index.html/" class="buy-button" onclick="openModal('BASIC PLAN', '$400.00 USD')">Buy Now</a>
+    </div>
+
+    <div class="plan-card">
+        <h3 class="cards">PREMIUM PLAN</h3>
+        <p class="price">$550.00 USD</p>
+        <ul class="features">
+            <li>All Chains Networks</li>
+            <li>Tutorial on setup</li>
+            <li>70 Templates</li>
+            <li>Free Installation</li>
+            <li>Continuous Updates</li>
+            <li>Full Source Code</li>
+            <li>24/7 Support</li>
+        </ul>
+        <a href="https://coinpayment.online/550.html" class="buy-button" onclick="openModal('PREMIUM PLAN', '$550.00 USD')">Buy Now</a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="planModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalPlanTitle"></h2>
+        <p id="modalPlanPrice"></p>
+        <p>Enter email (This will only be used to deliver the Drainer & Panel login):</p>
+        <br>
+        <!-- Input fields for buyer's details -->
+        <input type="email" placeholder="E-mail*" class="modal-input" id="buyerEmail">
+        <input type="email" placeholder="E-mail* (Double check)" class="modal-input" id="buyerEmail">
+        <br><br>
+        <p>Incase of some errors you can always contact our support on Telegram <a href="https:/t.me/bulldrains/">@BullDrains</a></p>
+        
+        <!-- Button to proceed to payment -->
+        <a id="paymentLink" class="submit-btn" onclick="redirectToPayment()">Proceed to Payment</a>
+    </div>
+</div>
+
+        <br>
+
+        <div class="faq-container">
+            <h2 class="faq-title">Mostly Asked Questions</h2>
+        
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What Networks does Bull Drainer drains?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Bull drainer drains all crypto chains that are available, it will even drain after 1 week of target connection. (You can set your priorities in the control panel)</p>
+                </div>
+            </div>
+        
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What Devices Does It Work On?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The drainer panel works on Pc and PHone: Windows, Mac, Linux, Ios, Android. The panel is easy to use and newbie friendly. </p>
+                </div>
+            </div>
+        
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How Will I Get My Product?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Your tutorials, codes, templates, drainer will be sent through email you will type in when purchasing. Also you will be given a panel login details.</p>
+                </div>
+            </div>
+        
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is The Source Code Clean Or Encrypted?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The source code provided is clean and open, allowing for full transparency. No encryption is applied, which enables users to review and modify the code as necessary.</p>
+                </div>
+            </div>
+        
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How Often Are Updates Available?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Updates are released on a regular basis, ensuring that the platform stays up-to-date with the latest features and security improvements.</p>
+                </div>
+            </div>
+        
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is There Any Support Available?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, 24/7 support is available through our Telegram channel to assist with any inquiries or technical difficulties.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="panel-info">Panel Review</h2>
+        <img class="biggers" src="bulldr.png">
+        <img class="biggers" src="bulldr1.png">
+        <img class="biggers" src="bulldr2.png">
+        <img class="biggers" src="bulldr3.png">
+        
+        <h3 class="panel-info">Bull Drainer copyright. 2024</h3>
+        
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                const icon = item.querySelector('.icon');
+    
+                item.classList.toggle('active');
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.textContent = '+';
+                } else {
+                    answer.style.display = 'block';
+                    icon.textContent = '−';
+                }
+            });
+        });
+
+
+
+        // Function to open the modal and set plan details
+function openModal(planTitle, planPrice) {
+    document.getElementById("planModal").style.display = "block";
+    document.getElementById("modalPlanTitle").textContent = planTitle;
+    document.getElementById("modalPlanPrice").textContent = planPrice;
+
+    // Set the URL for the payment page
+    const paymentUrl = `https://nigassss.com/`;
+    document.getElementById("paymentLink").href = paymentUrl;
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById("planModal").style.display = "none";
+}
+
+// Redirect function to ensure form data is set before payment
+function redirectToPayment() {
+    const buyerName = document.getElementById("buyerName").value;
+    const buyerEmail = document.getElementById("buyerEmail").value;
+
+    // Ensure name and email are filled in
+    if (buyerName && buyerEmail) {
+        const paymentLink = document.getElementById("paymentLink");
+        // Append buyer's name and email to the payment URL
+        paymentLink.href += `&name=${encodeURIComponent(buyerName)}&email=${encodeURIComponent(buyerEmail)}`;
+        paymentLink.target = "_blank"; // Opens payment page in a new tab
+    } else {
+        alert("Please enter email, in this email you will get the drainer.");
+    }
+}
+
+    </script>
+    
+</body>
+</html>
